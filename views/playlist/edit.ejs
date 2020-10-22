@@ -1,17 +1,23 @@
 <%-include('../partials/header.ejs') %>
 <div class="containerNew">
-    <h1>Create Playlist</h1>
+    <h1>Edit Playlist</h1>
     <form method="POST" action="/playlist/<%=idForPlaylist%>?_method=PUT">
-      <fieldset class="playlistInfo">
-        <legend>Playlist Infromation</legend>
-          <label for="title">Title</label>
-          <input type="text" id="title" value=<%=idOfPlaylistToEdit.title%>/>
-          <label for="description">Description</label>
-          <input type="text" id="description" value=<%=idOfPlaylistToEdit.description%>>
-          <label for="img">Image URL</label>
-          <input type="text" id="img" value=<%=idOfPlaylistToEdit.img%> />
-      </fieldset>
-      <input type="submit" name= "" value="Update Playlist">
-    </form>
+            <fieldset>
+              <label for="title">Title:</label>
+              <input id ="title" type="text" name="title"
+              placeholder="New name" value=<%=idOfPlaylistToEdit.title%>>
+            </fieldset>
+            <fieldset>
+              <label for="description">Description:</label>
+              <input id ="description" type="text" name="description"
+              placeholder="New description" value= <%=idOfPlaylistToEdit.description%>>
+            </fieldset>
+              <fieldset>
+                <label for="img">Image:</label>
+                <input id ="img" type="text" name="img"
+                placeholder="New Image link" value= <%=idOfPlaylistToEdit.img%>>
+              </fieldset>
+            <button>Update The Product</button>
+          </form>
 </div>
 <%-include('../partials/footer.ejs') %>

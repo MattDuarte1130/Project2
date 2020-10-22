@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Playlist = require('../models/playlist.js')
+const Video = require('../models/video.js')
 
 // new
 
@@ -59,11 +60,9 @@ Playlist.findById(req.params.id, (err, data) => {
 
 router.put('/:id', (req, res, next) => {
   const updatedPlaylist = {
-   name: req.body.name,
+   title: req.body.title,
    description: req.body.description,
-   price: req.body.price,
    img: req.body.img,
-   qty: req.body.qty,
  }
   Playlist.findByIdAndUpdate(req.params.id, updatedPlaylist, (err, data) => {
       if (err) {
@@ -77,5 +76,14 @@ router.put('/:id', (req, res, next) => {
 })
 
 
+
+// video
+router.get('/:id/video', (req, res, next) => {
+  Playlist.findById(req.params.id, (err, foundVideo)=>{
+      res.render('playlist/video.ejs', {
+          playlist:foundVideo,
+      });
+  });
+});
 
 module.exports = router

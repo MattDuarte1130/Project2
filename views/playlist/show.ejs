@@ -3,8 +3,7 @@
 <h1>Playlist Show Page</h1>
         <h3> <%=playlist.title; %> </h3>
         <h5> Description: <%=playlist.description; %> </h5>
-        <img src="<%=playlist.img; %>" alt="<%=playlist.title %>" width="350" height="350">
-
+        <a href="/playlist/<%=playlist.id;%>/video"><img src="<%=playlist.img; %>" alt="<%=playlist.title %>" width="640" height="360"></a>
         <a href="/playlist/<%=playlist.id;%>/edit ">(Edit Playlist)</a><br>
 
             <form action="/playlist/<%=playlist.id; %>?_method=DELETE" method="POST">
