@@ -32,3 +32,20 @@ mongoose.connect(mongodbURI, { useNewUrlParser: true});
 mongoose.connection.once('open', ()=> {
     console.log('connected to mongo')
 })
+
+// controllers
+// const playlistController = require('./controllers/playlist.js')
+// app.use('/playlist', playlistController)
+
+// Home Page
+app.get('/', (req, res) => {
+  res.render('home.ejs')
+})
+
+
+
+
+
+app.listen(PORT, ()=> {
+	console.log("Hello")
+})
