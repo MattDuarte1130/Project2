@@ -1,6 +1,5 @@
 const express = require('express')
 const mongoose = require('mongoose')
-// const Fruit = require('./models/fruits.js')
 const methodOverride = require('method-override')
 const session = require('express-session')
 require('dotenv').config()
@@ -34,8 +33,8 @@ mongoose.connection.once('open', ()=> {
 })
 
 // controllers
-// const playlistController = require('./controllers/playlist.js')
-// app.use('/playlist', playlistController)
+const playlistController = require('./controllers/playlist.js')
+app.use('/playlist', playlistController)
 
 // Home Page
 app.get('/', (req, res) => {

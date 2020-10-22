@@ -1,0 +1,21 @@
+<%-include('../partials/header.ejs') %>
+<div class="container">
+<h1>Playlist Index Page</h1>
+<nav>
+     <a href="/playlist/new">Create a New Playlist</a>
+ </nav>
+ <ul>
+     <% for(let i = 0; i < playlist.length; i++){ %>
+       <div class="itemContainer">
+       <li>
+         <h3 class='playlistTitle'><%=playlist[i].title; %></h3>
+           <a href="/playlist/<%=playlist[i].id; %>"><img src="<%=playlist[i].img; %>" alt="" width="200" height="200"></a><br>
+           <h5><%=playlist[i].description; %></h5>
+         </li>
+         </div>
+     <% } %>
+
+</ul>
+
+<%-include('../partials/footer.ejs') %>
+</div>
