@@ -86,4 +86,28 @@ router.get('/:id/video', (req, res, next) => {
   });
 });
 
+// add page
+router.get('/:id/video/add', (req, res) => {
+Playlist.findById(req.params.id, (err, data) => {
+  res.render('playlist/add.ejs', {
+    idOfPlaylistToEdit:data,
+    idForPlaylist: req.params.id
+    })
+  })
+})
+
+
+// add video
+router.put('/:id/video', (req, res, next) => {
+  Playlist.findById(req.params.id, (err, data) => {
+    data.videoTitle.push(req.body.videoTitle)
+    data.videoDescription.push(req.body.videoDescription)
+    data.videoLink.push(req.body.videoLink)
+    data.save(function(err, updatedData) {
+        console.log(updatedData)
+    })
+  })
+  res.redirect('/playlist')
+})
+
 module.exports = router

@@ -1,0 +1,23 @@
+<%-include('../partials/header.ejs') %>
+<div class="containerNew">
+    <h1>Add Video</h1>
+    <form method="POST" action="/playlist/<%=idForPlaylist%>/video?_method=PUT">
+            <fieldset>
+              <label for="videoTitle">Video Title:</label>
+              <input id ="videoTitle" type="text" name="videoTitle"
+              placeholder="New Video Title" value="">
+            </fieldset>
+            <fieldset>
+              <label for="videoDescription">Video Description:</label>
+              <input id ="videoDescription" type="text" name="videoDescription"
+              placeholder="New Video description" value= "">
+            </fieldset>
+              <fieldset>
+                <label for="videoLink">YouTube Link:</label>
+                <input id ="videoLink" type="text" name="img"
+                placeholder="New Video link" value= "">
+              </fieldset>
+            <button>Add The Video</button>
+          </form>
+</div>
+<%-include('../partials/footer.ejs') %>
