@@ -100,14 +100,17 @@ Playlist.findById(req.params.id, (err, data) => {
 // add video
 router.put('/:id/video', (req, res, next) => {
   Playlist.findById(req.params.id, (err, data) => {
+      let vidLink = req.body.videoLink
+      let useLink = vidLink.split('=')
+      let link = useLink[1];
     data.videoTitle.push(req.body.videoTitle)
     data.videoDescription.push(req.body.videoDescription)
-    data.videoLink.push(req.body.videoLink)
+    data.videoLink.push(link)
     data.save(function(err, updatedData) {
         console.log(updatedData)
     })
   })
-  res.redirect('/playlist')
+  res.redirect(`/playlist`)
 })
 
 module.exports = router
