@@ -36,9 +36,15 @@ mongoose.connection.once('open', ()=> {
 const playlistController = require('./controllers/playlist.js')
 app.use('/playlist', playlistController)
 
+const usersController = require('./controllers/users.js')
+app.use('/users', usersController)
+
+const sessionsController = require('./controllers/sessions.js')
+app.use('/sessions', sessionsController)
+
 // Home Page
 app.get('/', (req, res) => {
-  res.render('home.ejs')
+  res.render('home.ejs', { currentUser: req.session.currentUser })
 })
 
 

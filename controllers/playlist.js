@@ -1,11 +1,19 @@
 const express = require('express')
 const router = express.Router()
 const Playlist = require('../models/playlist.js')
-const Video = require('../models/video.js')
+
+
+const isAuthenticated = (req, res, next) =>  {
+	if (req.session.currentUser) {
+		return next()
+	} else {
+		res.redirect('/sessions/new')
+	}
+}
 
 // new
 
-router.get('/new', (req, res) => {
+router.get('/new', isAuthenticated, (req, res) => {
   res.render('playlist/new.ejs')
 })
 
@@ -22,23 +30,25 @@ router.post('/', (req,res) => {
 router.get('/', (req, res)=>{
     Playlist.find({}, (error, allPlaylist)=>{
         res.render('playlist/index.ejs', {
-            playlist: allPlaylist
+            playlist: allPlaylist,
+            currentUser: req.session.currentUser
         });
     });
 });
 
 // //show
 
-router.get('/:id', (req, res)=>{
+router.get('/:id', isAuthenticated,(req, res)=>{
     Playlist.findById(req.params.id, (err, foundPlaylist)=>{
         res.render('playlist/show.ejs', {
-            playlist:foundPlaylist
+            playlist:foundPlaylist,
+            currentUser: req.session.currentUser
         });
     });
 });
 
 // // delete
-router.delete('/:id', (req,res) => {
+router.delete('/:id', isAuthenticated, (req,res) => {
   Playlist.findByIdAndRemove(req.params.id, (err, data) => {
     res.redirect('/playlist');
     console.log('deleted Playlist')
@@ -47,18 +57,19 @@ router.delete('/:id', (req,res) => {
 
 // edit
 
-router.get('/:id/edit', (req, res) => {
+router.get('/:id/edit', isAuthenticated, (req, res) => {
 Playlist.findById(req.params.id, (err, data) => {
   res.render('playlist/edit.ejs', {
     idOfPlaylistToEdit:data,
-    idForPlaylist: req.params.id
+    idForPlaylist: req.params.id,
+    currentUser: req.session.currentUser
     })
   })
 })
 
 // Put
 
-router.put('/:id', (req, res, next) => {
+router.put('/:id', isAuthenticated, (req, res, next) => {
   const updatedPlaylist = {
    title: req.body.title,
    description: req.body.description,
@@ -78,27 +89,29 @@ router.put('/:id', (req, res, next) => {
 
 
 // video
-router.get('/:id/video', (req, res, next) => {
+router.get('/:id/video', isAuthenticated, (req, res, next) => {
   Playlist.findById(req.params.id, (err, foundVideo)=>{
       res.render('playlist/video.ejs', {
           playlist:foundVideo,
+          currentUser: req.session.currentUser,
       });
   });
 });
 
 // add page
-router.get('/:id/video/add', (req, res) => {
+router.get('/:id/video/add', isAuthenticated, (req, res) => {
 Playlist.findById(req.params.id, (err, data) => {
   res.render('playlist/add.ejs', {
     idOfPlaylistToEdit:data,
-    idForPlaylist: req.params.id
+    idForPlaylist: req.params.id,
+    currentUser: req.session.currentUser,
     })
   })
 })
 
 
 // add video
-router.put('/:id/video', (req, res, next) => {
+router.put('/:id/video', isAuthenticated, (req, res, next) => {
   Playlist.findById(req.params.id, (err, data) => {
       let vidLink = req.body.videoLink
       let useLink = vidLink.split('=')
