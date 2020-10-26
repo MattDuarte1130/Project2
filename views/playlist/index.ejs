@@ -1,9 +1,7 @@
 <%-include('../partials/header.ejs') %>
+<%- include('../partials/nav.ejs') %>
 <div class="container">
 <h1>Playlist Index Page</h1>
-<nav>
-     <a href="/playlist/new">Create a New Playlist</a>
- </nav>
  <ul>
      <% for(let i = 0; i < playlist.length; i++){ %>
        <div class="itemContainer">
