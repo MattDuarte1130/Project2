@@ -7,6 +7,7 @@ const playlistSchema = new mongoose.Schema({
     videoTitle: [String],
     videoDescription: [String],
     videoLink: [String],
+    videoImg: [String],
 });
 
 const Playlist = mongoose.model('Playlist', playlistSchema);

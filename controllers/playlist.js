@@ -88,7 +88,7 @@ router.put('/:id', isAuthenticated, (req, res, next) => {
 
 
 
-// video
+// videoImgPage
 router.get('/:id/video', isAuthenticated, (req, res, next) => {
   Playlist.findById(req.params.id, (err, foundVideo)=>{
       res.render('playlist/video.ejs', {
@@ -118,6 +118,7 @@ router.put('/:id/video', isAuthenticated, (req, res, next) => {
       let link = useLink[1];
     data.videoTitle.push(req.body.videoTitle)
     data.videoDescription.push(req.body.videoDescription)
+		data.videoImg.push(req.body.videoImg)
     data.videoLink.push(link)
     data.save(function(err, updatedData) {
         console.log(updatedData)
@@ -125,5 +126,24 @@ router.put('/:id/video', isAuthenticated, (req, res, next) => {
   })
   res.redirect(`/playlist`)
 })
+
+// Video Show Page
+
+router.get('/:id/:indexOfVideo/video', isAuthenticated,(req, res)=>{
+	let data = {
+		video: {
+			playlistId: req.params.id,
+			videoId: req.params.indexOfVideo
+		}
+	}
+    Playlist.findById(req.params.id, (err, foundPlaylist)=>{
+        res.render('playlist/videoPlay.ejs', {
+            playlist:foundPlaylist,
+						videoId:data.video.videoId,
+            currentUser: req.session.currentUser
+        });
+    });
+});
+
 
 module.exports = router
