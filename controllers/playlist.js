@@ -112,6 +112,11 @@ Playlist.findById(req.params.id, (err, data) => {
 
 // add video
 router.put('/:id/video', isAuthenticated, (req, res, next) => {
+	let videoData = {
+		video: {
+			playlistId: req.params.id,
+		}
+	}
   Playlist.findById(req.params.id, (err, data) => {
       let vidLink = req.body.videoLink
       let useLink = vidLink.split('=')
@@ -124,11 +129,11 @@ router.put('/:id/video', isAuthenticated, (req, res, next) => {
         console.log(updatedData)
     })
   })
-  res.redirect(`/playlist`)
+  res.redirect(`/playlist/${videoData.video.playlistId}/video`)
 })
 
 // Video Show Page
-
+// https://stackoverflow.com/questions/15128849/using-multiple-parameters-in-url-in-express
 router.get('/:id/:indexOfVideo/video', isAuthenticated,(req, res)=>{
 	let data = {
 		video: {
@@ -144,6 +149,50 @@ router.get('/:id/:indexOfVideo/video', isAuthenticated,(req, res)=>{
         });
     });
 });
+
+// edit
+
+router.get('/:id/:indexOfVideo/edit', isAuthenticated, (req, res) => {
+	let videoData = {
+		video: {
+			playlistId: req.params.id,
+			videoId: req.params.indexOfVideo
+		}
+	}
+Playlist.findById(req.params.id, (err, data) => {
+  res.render('playlist/editVideo.ejs', {
+    idOfPlaylistToEdit:data,
+    idForPlaylist: req.params.id,
+		videoId:videoData.video.videoId,
+    currentUser: req.session.currentUser,
+
+    })
+  })
+})
+
+// put edit
+router.put('/:id/:indexOfVideo/video', isAuthenticated, (req, res, next) => {
+	let videoData = {
+		video: {
+			playlistId: req.params.id,
+			videoId: req.params.indexOfVideo
+		}
+	}
+	Playlist.findById(req.params.id, (err, data) => {
+      let vidLink = req.body.videoLink
+      let useLink = vidLink.split('=')
+      let link = useLink[1];
+    data.videoTitle.splice(videoData.video.videoId, 1, req.body.videoTitle)
+    data.videoDescription.splice(videoData.video.videoId, 1, req.body.videoDescription)
+		data.videoImg.splice(videoData.video.videoId, 1, req.body.videoImg)
+    data.videoLink.splice(videoData.video.videoId, 1, link)
+    data.save(function(err, updatedData) {
+        console.log(updatedData)
+    })
+  })
+  res.redirect(`/playlist/${videoData.video.playlistId}/video`)
+})
+
 
 
 module.exports = router
