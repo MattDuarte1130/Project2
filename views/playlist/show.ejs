@@ -5,11 +5,11 @@
         <h3> <%=playlist.title; %> </h3>
         <h5> Description: <%=playlist.description; %> </h5>
         <a href="/playlist/<%=playlist.id;%>/video"><img src="<%=playlist.img; %>" alt="<%=playlist.title %>" width="640" height="360"></a>
-        <p><a href="/playlist/<%=playlist.id;%>/edit ">(Edit Playlist)</a></p>
+        <p><a href="/playlist/<%=playlist.id;%>/edit "><button>Edit Playlist</button></a></p>
 
             <form action="/playlist/<%=playlist.id; %>?_method=DELETE" method="POST">
               <form>
-                <input type="submit" value="DELETE"/>
+                <input type="submit" value="Delete"/>
               </form>
 <%-include('../partials/footer.ejs') %>
 </div>

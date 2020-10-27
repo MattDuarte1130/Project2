@@ -6,8 +6,8 @@
   <div class="itemContainer">
     <h3 class='videoDescription'><%=playlist.videoDescription[videoId]; %></h3>
       <iframe width="852" height="480" src="https://www.youtube.com/embed/<%=playlist.videoLink[videoId]%>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      <p><a href="/playlist/<%=playlist.id%>/<%=videoId%>/edit ">(Edit Video)</a></p>
-      <p><a href="/playlist/<%=playlist.id%>/<%=videoId%>/delete ">(Delete Video)</a></p>
+      <p><a href="/playlist/<%=playlist.id%>/<%=videoId%>/edit "><button>Edit Video</button></a></p>
+      <p><a href="/playlist/<%=playlist.id%>/<%=videoId%>/delete "><button>Delete Video</button></a></p>
   </div>
   </div>
 
