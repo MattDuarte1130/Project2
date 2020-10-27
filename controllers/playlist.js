@@ -3,6 +3,7 @@ const router = express.Router()
 const Playlist = require('../models/playlist.js')
 
 
+
 const isAuthenticated = (req, res, next) =>  {
 	if (req.session.currentUser) {
 		return next()
@@ -11,15 +12,16 @@ const isAuthenticated = (req, res, next) =>  {
 	}
 }
 
+
 // new
 
-router.get('/new', isAuthenticated, (req, res) => {
-  res.render('playlist/new.ejs')
+router.get('/:userId/new', isAuthenticated, (req, res) => {
+  res.render('playlist/new.ejs', {currentUser: req.session.currentUser})
 })
 
 // create
 
-router.post('/', (req,res) => {
+router.post('/', isAuthenticated, (req,res) => {
   Playlist.create(req.body, (error, createdPlaylist)=>{
     res.redirect('/playlist');
   });
@@ -27,7 +29,8 @@ router.post('/', (req,res) => {
 
 // // index
 
-router.get('/', (req, res)=>{
+router.get('/', isAuthenticated, (req, res)=>{
+
     Playlist.find({}, (error, allPlaylist)=>{
         res.render('playlist/index.ejs', {
             playlist: allPlaylist,
