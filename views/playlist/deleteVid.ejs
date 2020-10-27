@@ -1,0 +1,9 @@
+<%-include('../partials/header.ejs') %>
+<%- include('../partials/nav.ejs') %>
+<div class="containerNew">
+    <h1>Confirm Deleteing The Video</h1>
+    <form method="POST" action="/playlist/<%=idForPlaylist%>/<%=videoId%>?_method=PUT">
+            <button>Delete Video</button>
+    </form>
+</div>
+<%-include('../partials/footer.ejs') %>

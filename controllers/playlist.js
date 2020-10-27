@@ -193,6 +193,46 @@ router.put('/:id/:indexOfVideo/video', isAuthenticated, (req, res, next) => {
   res.redirect(`/playlist/${videoData.video.playlistId}/video`)
 })
 
+// delete Video
+
+router.get('/:id/:indexOfVideo/delete', isAuthenticated, (req, res) => {
+	let videoData = {
+		video: {
+			playlistId: req.params.id,
+			videoId: req.params.indexOfVideo
+		}
+	}
+Playlist.findById(req.params.id, (err, data) => {
+  res.render('playlist/deleteVid.ejs', {
+    idOfPlaylistToEdit:data,
+    idForPlaylist: req.params.id,
+		videoId:videoData.video.videoId,
+    currentUser: req.session.currentUser,
+
+    })
+  })
+})
+
+// put edit
+router.put('/:id/:indexOfVideo', isAuthenticated, (req, res, next) => {
+	let videoData = {
+		video: {
+			playlistId: req.params.id,
+			videoId: req.params.indexOfVideo
+		}
+	}
+	Playlist.findById(req.params.id, (err, data) => {
+    data.videoTitle.splice(videoData.video.videoId, 1)
+    data.videoDescription.splice(videoData.video.videoId)
+		data.videoImg.splice(videoData.video.videoId, 1)
+    data.videoLink.splice(videoData.video.videoId, 1)
+    data.save(function(err, updatedData) {
+        console.log(updatedData)
+    })
+  })
+  res.redirect(`/playlist/${videoData.video.playlistId}/video`)
+})
+
 
 
 module.exports = router
