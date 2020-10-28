@@ -1,25 +1,29 @@
 <%-include('../partials/header.ejs') %>
-<nav>
-    <a href="/playlist">Playlists</a> |
-    <a href="/playlist/new">Create A New Playlist</a> |
-    <a href="/playlist/<%=playlist.id%>/video/add">Add Video</a> |
+<nav class= "navBar">
+  | <a href="/playlist">Playlists</a> |
+  <a href="/playlist/new">Create A New Playlist</a> |
+  <a href="/playlist/<%=playlist.id%>/video/add">Add Video</a> |
+    <div class="userNav">
     <% if (currentUser) { %>
-    Welcome <%= currentUser.username %>
+    User: <%= currentUser.username %>
       <form action="/sessions?_method=DELETE" method="POST">
         <input type="submit" value="Log Out"/>
       </form>
     <% } else { %>
+      </div>
       <button type="button" name="button"><a href="/users/new">Sign Up</a></button>
       <button type="button" name="button"><a href="/sessions/new">Log In</a></button>
     <% } %>
 </nav>
-<div class="container">
-<h1>Video Show Page</h1><ul>
+
+<div class="videoShowContainer">
+<h1 class="indexTitle">All Videos in <%=playlist.title%> </h1>
+<ul class="indexUl">
     <% for(let i = 0; i < playlist.videoLink.length; i++){ %>
-      <div class="itemContainer">
+      <div class="indexContainer">
       <li>
         <h3> <%=playlist.videoTitle[i]; %> </h3>
-        <a href="<%=[i]%>/video/"><img src="<%=playlist.videoImg[i]%>";  alt="" width="320" height="180"></a><br>
+        <a href="<%=[i]%>/video/"><img class= "indexImg" src="<%=playlist.videoImg[i]%>";  alt="" width="320" height="180"></a><br>
         </li>
         </div>
     <% } %>

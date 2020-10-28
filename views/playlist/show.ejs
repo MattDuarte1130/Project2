@@ -1,15 +1,14 @@
 <%-include('../partials/header.ejs') %>
 <%- include('../partials/nav.ejs') %>
-<div class="container">
-<h1>Playlist Show Page</h1>
-        <h3> <%=playlist.title; %> </h3>
-        <h5> Description: <%=playlist.description; %> </h5>
-        <a href="/playlist/<%=playlist.id;%>/video"><img src="<%=playlist.img; %>" alt="<%=playlist.title %>" width="640" height="360"></a>
-        <p><a href="/playlist/<%=playlist.id;%>/edit "><button>Edit Playlist</button></a></p>
+<div class="playlistShowContainer">
+        <h1> <%=playlist.title; %> </h1>
 
+        <a href="/playlist/<%=playlist.id;%>/video"><img class="playlistShowImg" src="<%=playlist.img; %>" alt="<%=playlist.title %>" width="640" height="360"></a>
+        <h3> Description: <%=playlist.description; %> </h3>
+        <p><a href="/playlist/<%=playlist.id;%>/edit "><button>Edit Playlist</button></a></p>
             <form action="/playlist/<%=playlist.id; %>?_method=DELETE" method="POST">
               <form>
-                <input type="submit" value="Delete"/>
+                <input type="submit" value="Delete Playlist"/>
               </form>
 <%-include('../partials/footer.ejs') %>
 </div>

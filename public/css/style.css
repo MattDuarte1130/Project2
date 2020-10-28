@@ -1,6 +1,122 @@
 * {
   color: grey;
+  font-family: 'Cabin', sans-serif;
 }
+
 body {
   background-color: #2e2e2e;
+}
+
+.navBar {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.userNav{
+  text-align: left;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 55px;
+  width: 75px;
+}
+.logOut {
+  position: relative;
+}
+
+.footer {
+  text-align: center;
+}
+
+/* Home Page */
+
+.pageTitle {
+  text-align: center;
+  font-size: 48px;
+}
+.playBtn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: .5;
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+.playBtn:hover {
+  opacity: 1;
+}
+
+/* User Login Page */
+.userLoginContainer{
+  text-align: center;
+}
+#password{
+  width: 160px;
+}
+
+/* Index Page */
+
+.indexTitle{
+  text-align: center;
+}
+.indexUl{
+  text-align: center;
+  list-style-type: none;
+  font-size: 20px;
+}
+
+.indexImg{
+  border-radius: 10%;
+  transition: transform .2s;
+}
+
+.indexContainer{
+  display: inline-block;
+  padding:0px 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10%;
+  height: 280px;
+
+}
+
+.indexImg:hover{
+transform: scale(1.1);
+}
+
+
+/* New Playlist Page */
+.containerNew{
+  text-align: center;
+}
+#img{
+  width: 190px;
+}
+#title{
+  width: 200px;
+}
+fieldset {
+    border: 0;
+}
+
+/* Playlist Show Page */
+.playlistShowContainer{
+  text-align: center;
+}
+.playlistShowImg{
+  border-radius: 10%;
+}
+
+/* Edit Video Page */
+#videoTitle{
+  width: 200px;
+}
+#videoImg{
+  width: 190px;
+}
+#videoDescription{
+
+}
+#videoLink{
+  width: 190px;
 }

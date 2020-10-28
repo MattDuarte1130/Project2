@@ -1,12 +1,12 @@
 <%-include('../partials/header.ejs') %>
 <%- include('../partials/nav.ejs') %>
-<div class="container">
+<div class="playlistShowContainer">
 <h1><%=playlist.videoTitle[videoId]%></h1>
 
   <div class="itemContainer">
       <iframe width="852" height="480" src="https://www.youtube.com/embed/<%=playlist.videoLink[videoId]%>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       <h3 class='videoDescription'><%=playlist.videoDescription[videoId]; %></h3>
-      <p><a href="/playlist/<%=playlist.id%>"><button>Back To Playlist</button></a></p>
+      <p><a href="/playlist/<%=playlist.id%>/video"><button>Back To Playlist</button></a></p>
       <p><a href="/playlist/<%=playlist.id%>/<%=videoId%>/edit "><button>Edit Video</button></a></p>
       <p><a href="/playlist/<%=playlist.id%>/<%=videoId%>/delete "><button>Delete Video</button></a></p>
   </div>

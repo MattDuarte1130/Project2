@@ -1,13 +1,13 @@
 <%-include('../partials/header.ejs') %>
 <%- include('../partials/nav.ejs') %>
 <div class="container">
-<h1>Playlist Index Page</h1>
- <ul>
+<h1 class="indexTitle">Playlist Index Page</h1>
+ <ul class="indexUl">
      <% for(let i = 0; i < playlist.length; i++){ %>
-       <div class="itemContainer">
+       <div class="indexContainer">
        <li>
          <h3 class='playlistTitle'><%=playlist[i].title; %></h3>
-           <a href="/playlist/<%=playlist[i].id; %>"><img src="<%=playlist[i].img; %>" alt="" width="320" height="180"></a><br>
+           <a href="/playlist/<%=playlist[i].id; %>"><img class= "indexImg" src="<%=playlist[i].img; %>" alt="" width="320" height="180"></a><br>
          </li>
          </div>
      <% } %>

@@ -1,9 +1,16 @@
 <%- include('../partials/header.ejs') %>
-<%- include('../partials/nav.ejs') %>
-        <h1>New User page</h1>
-        <form action="/users" method="POST">
-            Username: <input type="text" name="username" /><br/>
-            Password: <input type="password" name="password" /><br/>
-            <input type="submit" name="" value="Create User"/>
-        </form>
+<div class="userLoginContainer">
+    <h1>Create New User</h1>
+    <form action="/users" method="POST">
+      <fieldset>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username"/>
+      </fieldset>
+      <fieldset>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
+      </fieldset>
+        <input type="submit" value="Create User">
+    </form>
+  </div>
 <%- include('../partials/footer.ejs') %>

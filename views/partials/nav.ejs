@@ -1,12 +1,14 @@
-<nav>
-    <a href="/playlist">Playlists</a> |
+<nav class= "navBar">
+    | <a href="/playlist">Playlists</a> |
     <a href="/playlist/new">Create A New Playlist</a> |
+    <div class="userNav">
     <% if (currentUser) { %>
-    Welcome <%= currentUser.username %>
+    User: <%= currentUser.username %>
       <form action="/sessions?_method=DELETE" method="POST">
         <input type="submit" value="Log Out"/>
       </form>
     <% } else { %>
+      </div>
       <button type="button" name="button"><a href="/users/new">Sign Up</a></button>
       <button type="button" name="button"><a href="/sessions/new">Log In</a></button>
     <% } %>

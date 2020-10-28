@@ -1,4 +1,15 @@
 <%- include('./partials/header.ejs') %>
-<%- include('./partials/nav.ejs') %>
-  <h1>Welcome To Playlist App</h1>
+<nav class= "navBar">
+    <% if (currentUser) { %>
+    Welcome <%= currentUser.username %>
+      <form action="/sessions?_method=DELETE" method="POST">
+        <input class ="logOut" type="submit" value="Log Out"/>
+      </form>
+    <% } else { %>
+      <button type="button" name="button"><a href="/users/new">Sign Up</a></button>
+      <button type="button" name="button"><a href="/sessions/new">Log In</a></button>
+    <% } %>
+</nav>
+  <h1 class="pageTitle">Welcome To The Playlist App</h1>
+  <a href="/playlist"><img class="playBtn" src="https://www.lynnettechadwick.com/wp-content/uploads/2015/04/play-button.png" alt="" height="650px" width="650px"></a>
 <%- include('./partials/footer.ejs') %>
