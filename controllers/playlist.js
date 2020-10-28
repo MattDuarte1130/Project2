@@ -15,14 +15,22 @@ const isAuthenticated = (req, res, next) =>  {
 
 // new
 
-router.get('/:userId/new', isAuthenticated, (req, res) => {
+router.get('/new', isAuthenticated, (req, res) => {
   res.render('playlist/new.ejs', {currentUser: req.session.currentUser})
 })
 
 // create
 
 router.post('/', isAuthenticated, (req,res) => {
-  Playlist.create(req.body, (error, createdPlaylist)=>{
+	const data = {
+		...req.body,
+		userId: req.session.currentUser._id
+	}
+	console.log(data)
+  Playlist.create(data, (error, createdPlaylist)=>{
+		if (error){
+			console.log(error)
+		}
     res.redirect('/playlist');
   });
 })
@@ -31,7 +39,7 @@ router.post('/', isAuthenticated, (req,res) => {
 
 router.get('/', isAuthenticated, (req, res)=>{
 
-    Playlist.find({}, (error, allPlaylist)=>{
+    Playlist.find({userId: req.session.currentUser._id}, (error, allPlaylist)=>{
         res.render('playlist/index.ejs', {
             playlist: allPlaylist,
             currentUser: req.session.currentUser

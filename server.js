@@ -27,7 +27,7 @@ app.use(
 )
 
 // Mongoose connection code
-mongoose.connect(mongodbURI, { useNewUrlParser: true});
+mongoose.connect(mongodbURI, { useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.connection.once('open', ()=> {
     console.log('connected to mongo')
 })
